@@ -44,3 +44,23 @@ input:focus {
 #success-message{
     display: none;
 }
+
+label::after{
+    content: '*';
+    color: red;
+}
+
+button:hover{
+    background-color: lightgreen;
+}
+
+button {
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0 5px #2e7d32;
+}
+
+button:active {
+    box-shadow: 0 2px #2e7d32;
+      transform: translateY(3px);
+}
