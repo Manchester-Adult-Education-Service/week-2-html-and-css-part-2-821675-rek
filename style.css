@@ -38,3 +38,9 @@ form {
 
 
 /* --- EXTENSIONS: Add your :focus and Success Message styles below --- */
+input:focus {
+  border-color: lightblue;
+}
+#success-message{
+    display: none;
+}
