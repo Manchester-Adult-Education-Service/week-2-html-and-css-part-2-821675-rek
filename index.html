@@ -20,7 +20,7 @@
             
             <div class="form-group">
                 <label for="email-address">Email Address</label>
-                <input id="email-address" type="email" required placeholder="e.g. Santaclaus@gmail.com">
+                <input id="email-address" type="email" required placeholder="e.g. santaclaus@gmail.com">
             </div>
         
             <div class="form-group">
@@ -36,5 +36,21 @@
         </form>
 
     </main>
+    <script>
+        const form = document.querySelector("form");
+        const successMessage = document.getElementById("success-message");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // this prevents the page from refreshing
+            if (form.checkValidity()) {
+                successMessage.classList.add("show");
+                form.reset();
+
+                setTimeout(function() {
+                    successMessage.classList.remove("show");
+                }, 3000);
+            }
+        });
+    </script>
 </body>
 </html>
