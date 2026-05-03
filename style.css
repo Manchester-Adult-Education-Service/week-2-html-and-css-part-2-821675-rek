@@ -7,7 +7,6 @@ body {
     color: #333;
     padding: 50px;
 }
-
 h1 {
     text-align: center;
     color: #2c3e50;
@@ -18,56 +17,54 @@ input:invalid {
     border: 2px solid red;
     background-color: #fff0f0;
 }
-
 .form-group {
     padding-bottom: 20px;
 }
-
 input {
     width: 100%;
     padding: 10px;
+    border: 2 px solid #ddd;
+    border-radius: 8px;
+    transition: 0.3s;
+    box-sizing: border-box;
 }
-
 form {
     max-width: 400px;
-    margin: auto;    
+    margin: auto; 
+    background:white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 25px 10px rgba(0,0,0,0.1) 
 }
 
 /* --- TASK 3: Add your :invalid visual validation below --- */
 
-
-
 /* --- EXTENSIONS: Add your :focus and Success Message styles below --- */
 input:focus {
-  border-color: lightblue;
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
+  outline: none;
 }
 #success-message{
     display: none;
 }
-
 label::after{
     content: '*';
     color: red;
 }
-
 .submit-buttons {
-    margin: 30px;
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    margin-top: 30px;
 }
-
 button:hover{
     background-color: lightgreen;
 }
-
 button {
-
+    width: 100%;
     padding: 15px;
     border-radius: 30px;
     box-shadow: 0 5px #2e7d32;
+    cursor: pointer;
 }
-
 button:active {
     box-shadow: 0 2px #2e7d32;
     transform: translateY(3px);
