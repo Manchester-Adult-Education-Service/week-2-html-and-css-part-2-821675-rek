@@ -30,10 +30,18 @@
                 id="password"
                 type="password"
                 minlength="8"
-                pattern required="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}"
-                required placeholder="Min 8 chars, 1 uppercase, 1 number"
+                pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}"
+                required 
+                placeholder="Min 8 chars, 1 uppercase, 1 number"
                 >
                 <small class="error-message">Password must include uppercase, lowercase, and a number.</small>
+
+                <ul id="password-checklist">
+                    <li id="check-length">At least 8 characters</li>
+                    <li id="check-lowercase">One lowercase letter</li>
+                    <li id="check-uppercase">One uppercase letter</li>
+                    <li id="check-number">One number</li>
+                </ul>
             </div>
 
             <button type="submit">Create Account</button>
@@ -48,7 +56,14 @@
         const form = document.querySelector("form");
         const successMessage = document.getElementById("success-message");
         const password = document.getElementById("password");
+        const checkLength = document.getElementById("check-length")
+        const checkLowercase = document.getElementById("check-lowercase")
+        const checkUppercase = document.getElementById("check-uppercase")
+        const checkNumber = document.getElementById("check-number")
 
+        function updateCheck(element, isValid) {
+            element.classList.toggle(valid, isValid);
+        }
         password.addEventListener("invalid", function () {
             password.setCustomValidity(
                 "Password must be at least 8 characters, include a capital letter and a number."
@@ -56,7 +71,13 @@
         });
 
             password.addEventListener("input", function () {
-                password.setCustomValidity();
+                password.setCustomValidity("");
+
+                const value= password.value;
+                updateCheck(checkLength, value.length >= 8);
+                updateCheck(checkLowercase, /[a-z]/.test(value));
+                updateCheck(checkUppercase, /[A-Z]/.test(value));
+                updateCheck(checkNumber, /\d/.test(value));
         });
 
         form.addEventListener("submit", function (event) {

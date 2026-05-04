@@ -57,6 +57,25 @@ input:invalid:not(:placeholder-shown) + .error-message {
     opacity: 1;
     transform: translateY(0);
 }
+#password-checklist {
+    list-style: none;
+    padding-left: 0;
+    font-size: 0.85rem;
+    margin-top: 8px;
+}
+#password-checklist li {
+    color: red;
+    transition: 0.3s;
+}
+#password-checklist li.valid {
+    color: green;
+}
+#password-checklist li::before {
+    content: "❌";
+}
+#password-checklist li.valid::before {
+    content: "✔";
+}
 #success-message{
     opacity: 0;
     margin-top: 15px;
