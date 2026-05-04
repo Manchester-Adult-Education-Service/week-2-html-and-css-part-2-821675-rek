@@ -43,9 +43,10 @@
                     <li id="check-number">One number</li>
                 </ul>
             <div id="strength-bar">
-                <div id="strength-fill"</div>
+                <div id="strength-fill"></div>
             </div>
             <p id="strength-text">Password strength: Weak</p>
+            </div>
 
             <button type="submit">Create Account</button>
     
@@ -79,6 +80,9 @@
                 password.setCustomValidity("");
 
                 const value= password.value;
+                //show bar when user types:
+                document.getElementById("strength-bar").classList.add("active");
+
                 updateCheck(checkLength, value.length >= 8);
                 updateCheck(checkLowercase, /[a-z]/.test(value));
                 updateCheck(checkUppercase, /[A-Z]/.test(value));
@@ -86,11 +90,11 @@
 
                 let strength = 0;
 
-                if(value.length >= 8) strength++;
-                if(/[a-z]./test(value)) strength++;
-                if(/[A-Z]./test(value)) strength++;
-                if(/\d/.test(value)) strength++;
-
+                if (value.length >= 8) strength++;
+                if (/[a-z]/.test(value)) strength++;
+                if (/[A-Z]/.test(value)) strength++;
+                if (/\d/.test(value)) strength++;
+console.log(strength);
                 if (strength <= 1) {
                     strengthFill.style.width = "25%";
                     strengthFill.style.backgroundColor = "red";
