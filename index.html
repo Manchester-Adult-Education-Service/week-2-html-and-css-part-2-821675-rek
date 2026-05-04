@@ -15,19 +15,25 @@
             <div class="form-group">
                 <label for="full-name">Full Name</label>
                 <input id="full-name" type="text" required placeholder="e.g. Santa Claus">
-                <small class="error message">Full name is required.</small>
+                <small class="error-message">Full name is required.</small>
             </div>
             
             <div class="form-group">
                 <label for="email-address">Email Address</label>
                 <input id="email-address" type="email" required placeholder="e.g. santaclaus@gmail.com">
-                <small class="error message">Enter a valid email address.</small>
+                <small class="error-message">Enter a valid email address.</small>
             </div>
         
             <div class="form-group">
                 <label for="password">Password</label>
-                <input id="password" minlength="8" type="password" required placeholder="Minimum 8 characters">
-                <small class="error message">Password must be a minimum of 8 characters.</small>
+                <input 
+                id="password"
+                type="password"
+                minlength="8"
+                pattern required="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}"
+                required placeholder="Min 8 chars, 1 uppercase, 1 number"
+                >
+                <small class="error-message">Password must include uppercase, lowercase, and a number.</small>
             </div>
 
             <button type="submit">Create Account</button>
@@ -41,6 +47,17 @@
     <script>
         const form = document.querySelector("form");
         const successMessage = document.getElementById("success-message");
+        const password = document.getElementById("password");
+
+        password.addEventListener("invalid", function () {
+            password.setCustomValidity(
+                "Password must be at least 8 characters, include a capital letter and a number."
+            );
+        });
+
+            password.addEventListener("input", function () {
+                password.setCustomValidity();
+        });
 
         form.addEventListener("submit", function (event) {
             event.preventDefault(); // this prevents the page from refreshing

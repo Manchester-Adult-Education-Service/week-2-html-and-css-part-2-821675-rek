@@ -44,10 +44,10 @@ input:focus {
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
     outline: none;
 }
-.errormessage {
+.error-message {
     opacity: 0;
-    transform: translateY(-5px)
-    color  red;
+    transform: translateY(-5px);
+    color: red;
     font-size: 0.85rem;
     margin-top: 5px;
     transition: 0.3s ease, transform 0.3s ease;
@@ -55,7 +55,7 @@ input:focus {
 }
 input:invalid:not(:placeholder-shown) + .error-message {
     opacity: 1;
-    transform: translateY(0)
+    transform: translateY(0);
 }
 #success-message{
     opacity: 0;
