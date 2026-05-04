@@ -10,7 +10,7 @@
 <body>
     <main>
         <h1>Customer Registration Portal</h1>
-
+<!--make notes like this -->
         <form>
             <div class="form-group">
                 <label for="full-name">Full Name</label>
@@ -42,7 +42,10 @@
                     <li id="check-uppercase">One uppercase letter</li>
                     <li id="check-number">One number</li>
                 </ul>
+            <div id="strength-bar">
+                <div id="strength-fill"</div>
             </div>
+            <p id="strength-text">Password strength: Weak</p>
 
             <button type="submit">Create Account</button>
     
@@ -56,13 +59,15 @@
         const form = document.querySelector("form");
         const successMessage = document.getElementById("success-message");
         const password = document.getElementById("password");
+        const strengthFill = document.getElementById("strength-fill");
+        const strengthText = document.getElementById("strength-text");
         const checkLength = document.getElementById("check-length")
         const checkLowercase = document.getElementById("check-lowercase")
         const checkUppercase = document.getElementById("check-uppercase")
         const checkNumber = document.getElementById("check-number")
 
         function updateCheck(element, isValid) {
-            element.classList.toggle(valid, isValid);
+            element.classList.toggle('valid', isValid);
         }
         password.addEventListener("invalid", function () {
             password.setCustomValidity(
@@ -78,6 +83,28 @@
                 updateCheck(checkLowercase, /[a-z]/.test(value));
                 updateCheck(checkUppercase, /[A-Z]/.test(value));
                 updateCheck(checkNumber, /\d/.test(value));
+
+                let strength = 0;
+
+                if(value.length >= 8) strength++;
+                if(/[a-z]./test(value)) strength++;
+                if(/[A-Z]./test(value)) strength++;
+                if(/\d/.test(value)) strength++;
+
+                if (strength <= 1) {
+                    strengthFill.style.width = "25%";
+                    strengthFill.style.backgroundColor = "red";
+                    strengthText.textContent = "Password strength: Weak";
+                } else if (strength === 2 || strength === 3) {
+                    strengthFill.style.width = "60%";
+                    strengthFill.style.backgroundColor = "orange";
+                    strengthText.textContent = "Password strength: Medium";
+                } else {
+                    strengthFill.style.width = "100%";
+                    strengthFill.style.backgroundColor = "green";
+                    strengthText.textContent = "Password strength: Strong";
+                }
+
         });
 
         form.addEventListener("submit", function (event) {
