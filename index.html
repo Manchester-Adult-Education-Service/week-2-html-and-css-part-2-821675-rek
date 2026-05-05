@@ -84,43 +84,48 @@
             );
         });
 
-            password.addEventListener("input", function () {
-                password.setCustomValidity("");
-            });
-            togglePassword.addEventListener("click", function () {
-
-            });
+        password.addEventListener("input", function () {
+            password.setCustomValidity("");
             
-                const value= password.value;
-                //show bar when user types:
-                document.getElementById("strength-bar").classList.add("active");
+            const value= password.value;
+            //show bar when user types:
+            document.getElementById("strength-bar").classList.add("active");
 
-                updateCheck(checkLength, value.length >= 8);
-                updateCheck(checkLowercase, /[a-z]/.test(value));
-                updateCheck(checkUppercase, /[A-Z]/.test(value));
-                updateCheck(checkNumber, /\d/.test(value));
+            updateCheck(checkLength, value.length >= 8);
+            updateCheck(checkLowercase, /[a-z]/.test(value));
+            updateCheck(checkUppercase, /[A-Z]/.test(value));
+            updateCheck(checkNumber, /\d/.test(value));
 
-                let strength = 0;
+            let strength = 0;
 
-                if (value.length >= 8) strength++;
-                if (/[a-z]/.test(value)) strength++;
-                if (/[A-Z]/.test(value)) strength++;
-                if (/\d/.test(value)) strength++;
-console.log(strength);
-                if (strength <= 1) {
-                    strengthFill.style.width = "25%";
-                    strengthFill.style.backgroundColor = "red";
-                    strengthText.textContent = "Password strength: Weak";
-                } else if (strength === 2 || strength === 3) {
-                    strengthFill.style.width = "60%";
-                    strengthFill.style.backgroundColor = "orange";
-                    strengthText.textContent = "Password strength: Medium";
-                } else {
-                    strengthFill.style.width = "100%";
-                    strengthFill.style.backgroundColor = "green";
-                    strengthText.textContent = "Password strength: Strong";
-                }
+            if (value.length >= 8) strength++;
+            if (/[a-z]/.test(value)) strength++;
+            if (/[A-Z]/.test(value)) strength++;
+            if (/\d/.test(value)) strength++;
 
+            if (strength <= 1) {
+                strengthFill.style.width = "25%";
+                strengthFill.style.backgroundColor = "red";
+                strengthText.textContent = "Password strength: Weak";
+            } else if (strength === 2 || strength === 3) {
+                strengthFill.style.width = "60%";
+                strengthFill.style.backgroundColor = "orange";
+                strengthText.textContent = "Password strength: Medium";
+            } else {
+                strengthFill.style.width = "100%";
+                strengthFill.style.backgroundColor = "green";
+                strengthText.textContent = "Password strength: Strong";
+            }
+        });
+
+        togglePassword.addEventListener("click", function () {
+            if (password.type === "password") {
+                password.type = "text";
+                togglePassword.textContent = "🙈";
+            } else {
+                password.type = "password";
+                togglePassword.textContent = "👁";
+            }
         });
 
         form.addEventListener("submit", function (event) {
