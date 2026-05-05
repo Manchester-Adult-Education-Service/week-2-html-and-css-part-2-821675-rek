@@ -26,6 +26,9 @@
         
             <div class="form-group">
                 <label for="password">Password</label>
+                
+                <div class="password-wrapper">
+                
                 <input 
                 id="password"
                 type="password"
@@ -34,6 +37,10 @@
                 required 
                 placeholder="Min 8 chars, 1 uppercase, 1 number"
                 >
+                
+                <button type="button" id="toggle-password">👁</button>
+                </div>
+
                 <small class="error-message">Password must include uppercase, lowercase, and a number.</small>
 
                 <ul id="password-checklist">
@@ -60,6 +67,7 @@
         const form = document.querySelector("form");
         const successMessage = document.getElementById("success-message");
         const password = document.getElementById("password");
+        const togglePassword = document.getElementById("toggle-password");
         const strengthFill = document.getElementById("strength-fill");
         const strengthText = document.getElementById("strength-text");
         const checkLength = document.getElementById("check-length")
@@ -78,7 +86,11 @@
 
             password.addEventListener("input", function () {
                 password.setCustomValidity("");
+            });
+            togglePassword.addEventListener("click", function () {
 
+            });
+            
                 const value= password.value;
                 //show bar when user types:
                 document.getElementById("strength-bar").classList.add("active");
